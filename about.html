@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 70%;
+}
+.result {
+    margin: auto;
+    width: 70%;
+    border: 3px solid #ccc;
+}
+</style>
+<head>
+  <title>Web app</title>
+</head>
+<h1></h1>
+<ul style="list-style-type:none;">
+  <li><a href="{{ url_for('main') }}">Books</a></li>
+  <li><a href="{{ url_for('dashboard') }}">For you</a></li>
+  <li><a href="{{ url_for('about') }}">About</a></li>
+</ul>
+<br>
+<div class="result" align="center">
+        <br>
+        <br>
+           <p style="font-size:20px">About the Books</p>
+           <p>The rating and users are from a collection of Goodreads active members, with roughly 1,500 users, 17,000 books, and 21,000 ratings.
+             Due to the relatively small corpus, there is some overlap in recommendations and you won't be able to find some well known books.
+              <br><br>The <b>Books</b> page is a demonstration of a recommendation system in action. Select a user to see the top ten book recommendations based on ratings of books they reviewed (see below).
+              If you want to check out one of the books on the list, select it in the books drop down box to get a link to the book on Goodreads.
+             <br><br>On the <b>For you</b> page, you can get ten personal books recommendations by inputting your name (or the name of your favorite Harry Potter character), one of the books from the corpus of books that were rated,
+             and give that book a rating of the book from 1 to 5.
+           </p>
+           <br>
+           <p style="font-size:20px">Technically Speaking</p>
+           <p>Taking a look at the books. First, at the distribution of book ratings.</p>
+           <img src="{{url_for('static', filename='dist_ratings.png')}}" />
+           <p>The distribution is centered around a rating of 4, with a good amount of 5 star ratings and several very low ratings. The next graph is the book ratings versus the amount of ratings per book.</p>
+           <img src="{{url_for('static', filename='ratings.png')}}" />
+           <p>The point with over 120 ratings is The Hunger Games.</p>
+           <p>Looking at the book ratings versus the amount of ratings per book without The Hunger Games.</p>
+          <img src="{{url_for('static', filename='ratings_no_hg.png')}}" />
+           <p>The recommendations are done using user to user collaborative filtering with the Surprise module in Python, meaning that a user's recommendations are based on similarity with other users.
+             This site uses a k-nearest neighbors algorithm to compute the recommended books, aka the KNNBasic prediction algorithm in Surprise.</p>
+           <p>How good is the recommendation? To evaluated the recommendations I looked at the root mean squared error of the testing data. In other words, how far off the predicted rating of a book was for a user from the actual ratingthe user gave. The value ended up being 0.4302</p>
+           <p>This site was built with Python and flask, with plans to add a mongodb database and metadata on the books (including the genre and description of each book).</p>
+           <p>Please play arond with the site and shoot any errors or feature suggestions to robert [dot] hillery [at] gmail [dot] com.</p>
+           <p>happy reading</p>
+</div>
+</html>

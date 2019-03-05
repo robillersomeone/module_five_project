@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html>
+  <style>
+
+  form {
+    margin: auto;
+    width: 35%;
+
+  }
+  .result {
+    margin: auto;
+    width: 35%;
+    border: 2px solid #ccc;
+  }
+  </style>
+  <head>
+    <title>Web app</title>
+  </head>
+  <h1></h1>
+  <ul style="list-style-type:none;">
+    <li><a href="{{ url_for('main') }}">Books</a></li>
+    <li><a href="{{ url_for('dashboard') }}">For you</a></li>
+    <li><a href="{{ url_for('about') }}">About</a></li>
+  </ul>
+  <form action="{{ url_for('dashboard') }}" method="POST">
+    <fieldset>
+      <legend>Find a book, this one's for you.</legend>
+      <br>
+      Name:
+      <input name="name" type="text" >
+      <br>
+      <br>
+      Book:
+      <input name="book_user" list="book_user_list" value = "{{ request.form['book_user'] }}" >
+      <datalist id="book_user_list">
+        {% for test_book in test_book_list %}
+          <option value="{{ test_book }}">
+        {% endfor %}
+      </datalist>
+      <br>
+      <br>
+      Rating:
+      <input name="rating" type="number" >
+      <br>
+      <br>
+      <input type="submit"
+    </fieldset>
+  </form>
+  <br>
+  <div class="results" align="center">
+    {% if result_user %}
+      <br>
+      <br>Books to put on the list:
+        <p style="font-size:15px">
+          {{ result_user[3][0] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][1] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][2] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][3] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][4] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][5] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][6] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][7] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][8] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result_user[3][9] }}
+        </p>
+        <br>
+    {% endif %}
+  </div>
+</html>

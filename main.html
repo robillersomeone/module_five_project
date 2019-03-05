@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html>
+  <style>
+  form {
+    margin: auto;
+    width: 35%;
+
+  }
+  .result {
+    margin: auto;
+    width: 35%;
+    border: 2px solid #ccc;
+  }
+  </style>
+  <head>
+    <title>Web app</title>
+  </head>
+  <h1> </h1>
+  <ul style="list-style-type:none;">
+    <li><a href="{{ url_for('main') }}">Books</a></li>
+    <li><a href="{{ url_for('dashboard') }}">For you</a></li>
+    <li><a href="{{ url_for('about') }}">About</a></li>
+  </ul>
+  <form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+      <legend>Find a book.</legend>
+      User:
+      <input name="user" type="number" required value="{{ request.form['user'] }}">
+      <br>
+      <br> Book:
+      <input name="book" list="book_list" value="{{ request.form['book'] if request.form['book'] in prediction }}">
+      <br>
+      <br>
+      <input type="submit"
+    </fieldset>
+  </form>
+  <br>
+  <div class="results" align="center">
+    {% if result %}
+
+      <br>
+      <br>Books to put on the list:
+        <p style="font-size:15px">
+          {{ result[0][0] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][1] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][2] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][3] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][4] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][5] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][6] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][7] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][8] }}
+        </p>
+        <p style="font-size:15px">
+          {{ result[0][9] }}
+        </p>
+        <br>
+
+        <p style="font-size:15px">
+          <a href={{ result[2] }} > {{ result[3] }} </a>
+          <datalist id="book_list">
+            <option value="{{ result[0][0] }}">
+            <option value="{{ result[0][1] }}">
+            <option value="{{ result[0][2] }}">
+            <option value="{{ result[0][3] }}">
+            <option value="{{ result[0][4] }}">
+            <option value="{{ result[0][5] }}">
+            <option value="{{ result[0][6] }}">
+            <option value="{{ result[0][7] }}">
+            <option value="{{ result[0][8] }}">
+            <option value="{{ result[0][9] }}">
+        </p>
+        <p style="font-size:15px">
+
+          {{ result[4] }}
+        </p>
+    {% endif %}
+  </div>
+</html>
